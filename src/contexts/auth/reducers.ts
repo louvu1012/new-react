@@ -46,6 +46,7 @@ export function reducer(state: AuthState, action: PayloadAction<AuthState>) {
 
 // ------------------- ACTIONS ------------------- //
 export function initialize(payload: AuthState): PayloadAction<AuthState> {
+  console.log(payload)
   return {
     type: AuthActionType.INITIALIZE,
     payload,
@@ -54,6 +55,7 @@ export function initialize(payload: AuthState): PayloadAction<AuthState> {
 
 
 export function signIn(payload: AuthState): PayloadAction<AuthState> {
+  console.log(payload)
   return {
     type: AuthActionType.SIGN_IN,
     payload,

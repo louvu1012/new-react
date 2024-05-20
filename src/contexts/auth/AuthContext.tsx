@@ -34,7 +34,6 @@ export const AuthProvider: FC<any> = ({ children }) => {
   useEffect(()=> {
     (async () => {
       const accessToken = localStorage.getItem('ACCESS_TOKEN');
-      console.log(accessToken)
       if (!accessToken) {
         return dispatch(initialize({
           isAuthenticated: false,

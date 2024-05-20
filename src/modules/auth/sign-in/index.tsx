@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useAuth } from "../../../hook/useAuth";
-import { authService } from "../../../service/useAuth";
+import { authService } from "../../../hook/useAuth";
 import { signIn } from "../../../contexts/auth/reducers";
 
 const SignIn: FC = () => {

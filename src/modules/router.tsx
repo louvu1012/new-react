@@ -3,6 +3,8 @@ import SignIn from "./auth/sign-in";
 import UserList from "./dashboard/user/list";
 import UserEdit from "./dashboard/user/edit";
 import { FC } from "react";
+import GuestGuard from "../guards/GuestGuard";
+import AuthGuard from "../guards/AuthGuard";
 
 const Router: FC = () => {
   return useRoutes([
@@ -11,7 +13,11 @@ const Router: FC = () => {
       children: [
         {
           path: 'sign-in',
-          element: <SignIn />
+          element: (
+            <GuestGuard>
+              <SignIn />
+            </GuestGuard>
+          ),
         },
       ],
     },
@@ -31,11 +37,19 @@ const Router: FC = () => {
             },
             {
               path: 'list',
-              element: <UserList />,
+              element: (
+                <AuthGuard>
+                  <UserList />
+                </AuthGuard>
+              ),
             },
             {
               path: 'edit',
-              element: <UserEdit />,
+              element: (
+                <AuthGuard>
+                  <UserEdit />
+                </AuthGuard>
+              ),
             },
           ],
         },
