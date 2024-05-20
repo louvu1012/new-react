@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom";
 const GuestGuard: FC<any> = ({ children }) => {
   const { isInitialized, isAuthenticated } = useAuth();
 
-  if (!isInitialized) return 'Loading ...';
+  if (!isInitialized) return <>Loading ...</>;
 
   if (isAuthenticated) return <Navigate to="/dashboard" />;
 
