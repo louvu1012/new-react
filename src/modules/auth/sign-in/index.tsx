@@ -1,8 +1,26 @@
-import React from "react";
+import { FC } from "react";
+import { useAuth } from "../../../hook/useAuth";
+import { authService } from "../../../service/useAuth";
+import { signIn } from "../../../contexts/auth/reducers";
 
-const SignIn = () => {
+const SignIn: FC = () => {
+  const { dispatch } = useAuth();
+
+  async function handleSignIn() {
+    try {
+      const { accessToken, user } = await authService.signIn();
+      localStorage.setItem('ACCESS_TOKEN', accessToken);
+      dispatch(signIn({ user }));
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
-    <div>Sign In</div>
+    <>
+      <div>Sign In</div>
+      <button onClick={handleSignIn}>...</button>
+    </>
   );
 };
 

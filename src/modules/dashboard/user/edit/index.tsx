@@ -1,6 +1,6 @@
-import React from "react";
+import { FC } from "react";
 
-const UserEdit = () => {
+const UserEdit: FC = () => {
   return (
     <div>User Edit</div>
   );

@@ -1,6 +1,6 @@
-import React from "react";
+import { FC } from "react";
 
-const UserList = () => {
+const UserList: FC = () => {
   return (
     <div>User List</div>
   );
