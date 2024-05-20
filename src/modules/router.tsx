@@ -1,9 +1,7 @@
-import React, { lazy } from "react";
 import { Navigate, useRoutes } from "react-router-dom";
-
-const SignIn = lazy(() => import('./auth/sign-in'));
-const UserList = lazy(() => import('./dashboard/user/list'));
-const UserEdit = lazy(() => import('./dashboard/user/edit'));
+import SignIn from "./auth/sign-in";
+import UserList from "./dashboard/user/list";
+import UserEdit from "./dashboard/user/edit";
 
 const Router = () => {
   return useRoutes([
