@@ -1,8 +1,11 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { useAuth } from "../hook/useAuth";
 import { Navigate } from "react-router-dom";
 
-const AuthGuard: FC<any> = ({ children }) => {
+type TAuthGuard = {
+  children: ReactNode
+}
+const AuthGuard: FC<TAuthGuard> = ({ children }) => {
   const { isInitialized, isAuthenticated } = useAuth();
 
   if (!isInitialized) return <>Loading ...</>;

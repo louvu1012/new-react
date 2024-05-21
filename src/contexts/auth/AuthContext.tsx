@@ -1,4 +1,4 @@
-import { Dispatch, FC, createContext, useEffect, useReducer } from "react";
+import { Dispatch, FC, ReactNode, createContext, useEffect, useReducer } from "react";
 import { AuthState } from "./types";
 import { initialize, reducer } from "./reducers";
 
@@ -28,7 +28,10 @@ export const AuthContext = createContext<AuthContextType>({
   dispatch: () => null,
 });
 
-export const AuthProvider: FC<any> = ({ children }) => {
+type TAuthProvider = {
+  children: ReactNode
+}
+export const AuthProvider: FC<TAuthProvider> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   
   useEffect(()=> {
