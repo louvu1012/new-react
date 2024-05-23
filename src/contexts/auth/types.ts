@@ -8,3 +8,8 @@ export interface AuthState {
   isInitialized?: boolean;
   user: User | null;
 }
+
+export interface AuthDto {
+  accessToken: string;
+  user: User;
+}

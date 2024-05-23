@@ -3,7 +3,7 @@ import { useAuth } from "../../../../hook/useAuth";
 import { signOut } from "../../../../contexts/auth/reducers";
 
 const UserList: FC = () => {
-  const { dispatch } = useAuth();
+  const { user, dispatch } = useAuth();
   
   async function handleSignOut() {
     try {
@@ -15,7 +15,7 @@ const UserList: FC = () => {
 
   return (
     <>
-      <div>User List</div>
+      <div>Xin chào {user?.email}</div>
       <button onClick={handleSignOut}>Logout</button>
     </>
   );

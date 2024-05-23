@@ -1,6 +1,7 @@
 import { Dispatch, FC, ReactNode, createContext, useEffect, useReducer } from "react";
 import { AuthState } from "./types";
 import { initialize, reducer } from "./reducers";
+import { cookieService } from "../../hook/useCookie";
 
 export enum AuthActionType {
   INITIALIZE = 'INITIALIZE',
@@ -33,10 +34,10 @@ type TAuthProvider = {
 }
 export const AuthProvider: FC<TAuthProvider> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  
-  useEffect(()=> {
+
+  useEffect(() => {
     (async () => {
-      const accessToken = localStorage.getItem('ACCESS_TOKEN');
+      const accessToken = cookieService.getCookie('ACCESS_TOKEN');
       if (!accessToken) {
         return dispatch(initialize({
           isAuthenticated: false,
@@ -45,11 +46,9 @@ export const AuthProvider: FC<TAuthProvider> = ({ children }) => {
       }
 
       try {
-        // const user = await userService.getProfile();
-        const user = {
-          email: '123@gmail.com',
-          password: '123456'
-        }
+        // const user = await userService.getProfile(); // gọi api để lấy user info từ token
+        const userString = cookieService.getCookie('USER');
+        const user = JSON.parse(userString);
         // Đoạn trên lấy ra user info để set vào payload
         dispatch(initialize({ isAuthenticated: true, user }));
       } catch {
@@ -57,7 +56,7 @@ export const AuthProvider: FC<TAuthProvider> = ({ children }) => {
       }
     })();
   }, []);
-  
+
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>{children}</AuthContext.Provider>
   )

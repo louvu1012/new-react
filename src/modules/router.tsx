@@ -9,8 +9,17 @@ import AuthGuard from "../guards/AuthGuard";
 const Router: FC = () => {
   return useRoutes([
     {
+      // path: '*',
+      index: true,
+      element: <Navigate to="/auth" replace />
+    },
+    {
       path: 'auth',
       children: [
+        {
+          index: true,
+          element: <Navigate to="/auth/sign-in" replace />
+        },
         {
           path: 'sign-in',
           element: (
