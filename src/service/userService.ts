@@ -1,14 +1,8 @@
-import axios from "axios";
-
-// Tạo một axios instance mới và thiết lập các cấu hình
-const instance = axios.create({
-  baseURL: 'http://localhost:5000/api/', // Địa chỉ cơ sở của API
-  withCredentials: true, // Cho phép gửi cookie
-});
+import { Api } from "../lib/Api";
 
 class UserService {
   async getProfile(): Promise<any> {
-    const response = await instance.get('auth/me');
+    const response = await Api.get('me');
     return Promise.resolve(response.data.user);
   }
 }
