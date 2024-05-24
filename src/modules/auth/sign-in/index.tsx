@@ -1,18 +1,20 @@
 import { FC, useState } from "react";
-import { authService, useAuth } from "../../../hook/useAuth";
+import { useAuth } from "../../../contexts/auth/AuthContext";
 import { signIn } from "../../../contexts/auth/reducers";
 import { Button, Flex, Form, Input } from "antd";
+import { authService } from "../../../service/authService";
+import { userService } from "../../../service/userService";
 
 const SignIn: FC = () => {
   const { dispatch } = useAuth();
-
   const [loadingSubmit, setLoadingSubmit] = useState(false)
 
   const handleSubmit = async (values: any) => {
     setLoadingSubmit(true)
     try {
-      const { accessToken, user } = await authService.signIn(values)
-      dispatch(signIn({ user }, accessToken, user))
+      await authService.signIn(values)
+      const user = await userService.getProfile();
+      dispatch(signIn({ user }))
       setLoadingSubmit(false)
     } catch (error) {
       console.error(error)

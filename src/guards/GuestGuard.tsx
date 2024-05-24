@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import { useAuth } from "../hook/useAuth";
+import { useAuth } from "../contexts/auth/AuthContext";
 import { Navigate } from "react-router-dom";
 
 type TGuestGuard = {

@@ -1,12 +1,14 @@
 import { FC } from "react";
-import { useAuth } from "../../../../hook/useAuth";
+import { useAuth } from "../../../../contexts/auth/AuthContext";
 import { signOut } from "../../../../contexts/auth/reducers";
+import { authService } from "../../../../service/authService";
 
 const UserList: FC = () => {
   const { user, dispatch } = useAuth();
   
   async function handleSignOut() {
     try {
+      await authService.signOut()
       dispatch(signOut());
     } catch (error) {
       console.error(error);
