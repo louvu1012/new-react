@@ -3,11 +3,11 @@ import { Api } from "../lib/Api";
 
 class AuthService {
   async signIn(user: User): Promise<void> {
-    await Api.post('login', user);
+    await Api.post('auth/login', user);
   }
 
   async signOut(): Promise<void> {
-    await Api.post('logout');
+    await Api.post('auth/logout');
   }
 }
 
